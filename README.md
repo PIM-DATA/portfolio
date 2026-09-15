@@ -1,49 +1,64 @@
 # Phimphimai Buranchai — Data Analyst Portfolio
 
-🌐 **Live:** https://phimphimaipim.vercel.app · **Repo:** https://github.com/PIM-DATA/portfolio
+**Live site:** https://phimphimaipim.vercel.app
 
-เว็บ Portfolio แบบ single-page ทำด้วย **React + Vite + Tailwind CSS v4 + Framer Motion**
+A personal portfolio for a Bangkok-based Data Analyst / BI Analyst, built as a single-page React app. Beyond the usual profile, experience, and project cards, it contains **four interactive dashboard rebuilds** — three Power BI pages and one Looker Studio report that I built at work, recreated for the web with the same layouts, filters, and logic.
 
-## รันดูบนเครื่อง
+> **Every number on this site is synthetic.** The original dashboards run on confidential business data. Each rebuild generates its dataset from a fixed random seed at load time, so the visuals behave like the real reports without exposing a single real figure.
 
-```bash
-npm install     # ครั้งแรกครั้งเดียว
-npm run dev     # เปิด http://localhost:5173
-```
+## What's inside
 
-## แก้ไขเนื้อหา
+| Section | Highlights |
+|---|---|
+| **Home** | Profile, skills by group, tool icons, certifications (with lightbox), experience timeline from my CV |
+| **Work** | 12 project case studies — self-service analytics (Databricks Genie), feature analytics, market research, BI dashboards, GA4 reporting, data engineering, RFM segmentation, social listening — each with an illustrative SVG chart |
+| **Dashboards** (`/#/dashboard`) | 4 rebuilt reports, stacked with a sticky jump-nav: **New customers by province** (77-province choropleth, region/province/round filters, age × gender, sortable table) · **LINE OA Block** (active vs blocked, round-over-round deltas, 3-year monthly trend) · **LINE OA Broadcast** (sent/opened/clicked/cost KPIs, per-round table, daily and hourly views) · **GA4 E-commerce** (Looker-style sidebar pages, scorecards with period comparison and sparklines, revenue trend, funnel, country/device) |
 
-ข้อมูลทั้งหมด (ชื่อ, ประสบการณ์, skills, projects, ช่องทางติดต่อ) อยู่ที่ไฟล์เดียว:
+## Design notes
 
-```
-src/data/profile.js
-```
+- **Charts are hand-written SVG** (no chart library) — hover tooltips, crosshairs, sortable tables, and a data-table fallback on the smaller charts.
+- **One y-axis per chart.** Where the originals used dual axes, the rebuild splits them into paired charts sharing an x-axis.
+- **Palette validated for colour-vision deficiency** (adjacent-series ΔE checked) with legends and 2px gaps as secondary encoding; status colours carry an icon, never colour alone.
+- Animated "data constellation" background on canvas, reveal footer, scroll-spy navigation; all motion respects `prefers-reduced-motion`.
+- Thailand province geometry simplified from [apisit/thailand.json](https://github.com/apisit/thailand.json) (MIT) and pre-projected into SVG paths. Brand icons from [Simple Icons](https://simpleicons.org) (CC0).
 
-- **เปลี่ยน CV** — วางไฟล์ PDF ใหม่ทับ `public/Phimphimai-Buranchai-CV.pdf`
-- **ใส่ LinkedIn / GitHub** — แก้ `profile.linkedin` และ `profile.github` ใน `profile.js` (จะโชว์ในส่วน Contact อัตโนมัติ)
-- **ปิดป้าย "Open to work"** — ตั้ง `available: false`
-- **แก้กราฟใน Projects** — ตัวเลขตัวอย่างอยู่ใน `src/charts/*.jsx`
-- **แดชบอร์ด (หน้า `#/dashboard`)** — ข้อมูลจำลอง generate ใน `src/dashboard/data.js` (เปลี่ยน seed / สัดส่วนได้), ข้อความ case study อยู่ใน `dashboardCase` ของ `profile.js`, แผนที่จังหวัดอยู่ใน `src/data/thailand.js`
-- **เปลี่ยนสี / ฟอนต์** — ตัวแปรอยู่ใน `src/index.css` (บล็อก `@theme`)
+## Stack
 
-## อัปเดตเว็บ
-
-เว็บเชื่อมกับ GitHub → Vercel แล้ว: แก้ไฟล์ → `git commit` → `git push` → Vercel build ใหม่อัตโนมัติใน ~1 นาที
-
-- Vercel project: https://vercel.com (ทีม PIMPIM → phimphimaipim)
-- เปลี่ยนชื่อลิงก์: Vercel → Settings → Domains
-
-## โครงสร้าง
+React 19 · Vite 7 · Tailwind CSS 4 · Framer Motion · deployed on Vercel (auto-deploys from `main`)
 
 ```
 src/
-  data/profile.js      ← เนื้อหาทั้งหมด
-  components/          ← Nav, Hero, Marquee, About, Experience, Work, Contact, Footer
-  charts/              ← กราฟ SVG ในการ์ด Projects (มี tooltip + data table)
-  pages/DashboardPage.jsx ← หน้าแดชบอร์ดแยก (เข้าจากเมนู Dashboard หรือการ์ดใน Work)
-  router.js            ← hash routing แบบง่าย
-  dashboard/           ← แดชบอร์ด interactive (filter, แผนที่, กราฟ, ตาราง) ใช้ข้อมูลจำลอง
-  index.css            ← สี ฟอนต์ และ utility classes
-public/
-  Phimphimai-Buranchai-CV.pdf
+  data/profile.js      all copy: profile, skills, experience, projects, dashboard case studies
+  data/thailand.js     77 province paths + regions
+  components/          page sections (Hero, About, Experience, Work, Footer, Nav, Background …)
+  charts/              small SVG charts used on project cards
+  dashboard/           the four dashboard rebuilds + synthetic data generators
+  pages/DashboardPage.jsx
 ```
+
+## Run locally
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production build → dist/
+```
+
+## Contact
+
+Phimphimai Buranchai · Bangkok · Phimphimaiburanchai@gmail.com
+
+---
+
+<details>
+<summary>หมายเหตุสำหรับตัวเอง (ภาษาไทย)</summary>
+
+- ข้อความทั้งหมดแก้ที่ `src/data/profile.js` — Experience ให้ตรงตาม CV, `featured: true` = โปรเจกต์ที่โชว์หน้าแรก
+- เปลี่ยน CV: วางไฟล์ทับ `public/Phimphimai-Buranchai-CV.pdf` · ใบเซอร์อยู่ `public/certs/` · รูปโปรไฟล์ `public/profile.jpg`
+- ใส่ LinkedIn / LINE: `profile.linkedin`, `profile.line` ใน `profile.js` (จะโผล่ที่ footer)
+- แดชบอร์ด: ข้อมูลจำลองอยู่ใน `src/dashboard/*.jsx` และ `data.js` · ข้อความ case study อยู่ที่ `dashboards` ใน `profile.js`
+- สี/ฟอนต์: `src/index.css` (บล็อก `@theme`)
+- อัปเดตเว็บ: แก้ → `git commit` → `git push` → Vercel build ให้เองใน ~1 นาที · เปลี่ยนชื่อลิงก์ที่ Vercel → Settings → Domains
+- ไฟล์ต้นฉบับที่มีข้อมูลจริง (PDF portfolio, รูปดิบ, screenshots) ถูกกันไม่ให้ขึ้น GitHub ใน `.gitignore`
+
+</details>
