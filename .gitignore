@@ -1,0 +1,13 @@
+node_modules
+dist
+.DS_Store
+
+# ไฟล์ต้นฉบับที่ไม่ควรขึ้น GitHub (มีข้อมูลจริง / ไฟล์ดิบ) — เว็บใช้สำเนาใน public/ แทน
+PHIMPHIM_Portfolio.pdf
+Resume - Phimphimai Buranchai.pdf
+IMG_2728.jpeg
+*.jpg
+*.jpeg
+*.png
+!public/**
+screenshots/
