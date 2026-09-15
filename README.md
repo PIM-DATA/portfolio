@@ -1,5 +1,7 @@
 # Phimphimai Buranchai — Data Analyst Portfolio
 
+🌐 **Live:** https://phimphimaipim.vercel.app · **Repo:** https://github.com/PIM-DATA/portfolio
+
 เว็บ Portfolio แบบ single-page ทำด้วย **React + Vite + Tailwind CSS v4 + Framer Motion**
 
 ## รันดูบนเครื่อง
@@ -24,13 +26,12 @@ src/data/profile.js
 - **แดชบอร์ด (หน้า `#/dashboard`)** — ข้อมูลจำลอง generate ใน `src/dashboard/data.js` (เปลี่ยน seed / สัดส่วนได้), ข้อความ case study อยู่ใน `dashboardCase` ของ `profile.js`, แผนที่จังหวัดอยู่ใน `src/data/thailand.js`
 - **เปลี่ยนสี / ฟอนต์** — ตัวแปรอยู่ใน `src/index.css` (บล็อก `@theme`)
 
-## Deploy ขึ้น Vercel (ฟรี)
+## อัปเดตเว็บ
 
-1. สร้าง repo บน GitHub แล้ว push โฟลเดอร์นี้ขึ้นไป
-2. ไปที่ https://vercel.com → **Add New Project** → เลือก repo
-3. Vercel ตรวจเจอ Vite เอง กด **Deploy** ได้เลย (Build command: `npm run build`, Output: `dist`)
+เว็บเชื่อมกับ GitHub → Vercel แล้ว: แก้ไฟล์ → `git commit` → `git push` → Vercel build ใหม่อัตโนมัติใน ~1 นาที
 
-หรือใช้ CLI: `npx vercel`
+- Vercel project: https://vercel.com (ทีม PIMPIM → phimphimaipim)
+- เปลี่ยนชื่อลิงก์: Vercel → Settings → Domains
 
 ## โครงสร้าง
 
