@@ -251,3 +251,120 @@ export function Ga4Funnel() {
 export function AdsSpark() {
   return <SocialSpark kpis={ADS_KPIS} series={ADS_SERIES} label="Daily new subscribers" />
 }
+
+/* ── Hourly pulse: ยอดขายรายชั่วโมงเทียบเป้า + รายงานส่งเองตรง :05 ── */
+const PULSE = [['06', 12, 11], ['07', 18, 19], ['08', 25, 27], ['09', 31, 30], ['10', 38, 40], ['11', 36, 39], ['12', 41, 44], ['13', 35, 33], ['14', 20, null]]
+export function HourlyPulse() {
+  const { tip, show, hide } = useTip()
+  const PL = 8, PT = 50, PB = 18, max = 48, bw = (W - PL * 2) / PULSE.length
+  const y = (v) => PT + (1 - v / max) * (H - PT - PB)
+  const head = [['Sold vs target', '103%'], ['Next report', '14:05'], ['Checks', '6 / 6 ✓']]
+  return (
+    <div className="relative">
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Hourly sales versus target (illustrative)">
+        {head.map(([l, v], i) => (
+          <g key={l} transform={`translate(${8 + i * 104}, 6)`}>
+            <text y="9" fontSize="8" fill={C.text} fontFamily={MONO}>{l.toUpperCase()}</text>
+            <text y="28" fontSize="16" fill={C.textStrong} fontFamily="var(--font-sans)" fontWeight="700">{v}</text>
+          </g>
+        ))}
+        {PULSE.map(([h, t, a], i) => {
+          const x = PL + i * bw
+          return (
+            <g key={h} onMouseMove={(e) => { const r = e.currentTarget.closest('svg').getBoundingClientRect(); show({ x: e.clientX - r.left, y: e.clientY - r.top, label: `${h}:00`, value: a == null ? `target ${t}K · in progress` : `${a}K sold · target ${t}K` }) }} onMouseLeave={hide}>
+              {a != null && <rect x={x + 4} y={y(a)} width={bw - 8} height={H - PB - y(a)} rx="3" fill={a >= t ? C.s1 : C.neg} opacity="0.9" />}
+              {a == null && <rect x={x + 4} y={y(t)} width={bw - 8} height={H - PB - y(t)} rx="3" fill="none" stroke={C.s1} strokeDasharray="3 3" />}
+              <line x1={x + 2} x2={x + bw - 2} y1={y(t)} y2={y(t)} stroke={C.s2} strokeWidth="2" />
+              <text x={x + bw / 2} y={H - 5} textAnchor="middle" fontSize="9" fill={C.text} fontFamily={MONO}>{h}</text>
+            </g>
+          )
+        })}
+      </svg>
+      <Tip tip={tip} />
+      <Legend items={[{ label: 'Sold (above target)', color: C.s1 }, { label: 'Below target', color: C.neg }, { label: 'Hourly target', color: C.s2 }]} />
+    </div>
+  )
+}
+
+/* ── Broadcast → sales: ส่งถึงคนเยอะ ≠ ได้ผู้ซื้อเยอะ ── */
+const SENDS = [['Send 1', 1.1, 260], ['Send 2', 0.7, 290], ['Send 3', 5.8, 120], ['Send 4', 2.3, 210], ['Send 5', 5.9, 55]]
+export function BroadcastSales() {
+  const { tip, show, hide } = useTip()
+  const PL = 50, mid = 182, rowH = (H - 30) / SENDS.length, barH = 10
+  const xr = (v) => PL + (v / 6) * (mid - PL - 14), xb = (v) => mid + (v / 300) * (W - mid - 30)
+  return (
+    <div className="relative">
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Broadcast reach versus buyers per send (illustrative)">
+        <text x={PL} y="10" fontSize="8" fill={C.text} fontFamily={MONO}>REACH (M)</text>
+        <text x={mid} y="10" fontSize="8" fill={C.text} fontFamily={MONO}>BUYERS WITHIN 30 MIN</text>
+        {SENDS.map(([l, r, b], i) => {
+          const y = 22 + i * rowH + (rowH - barH) / 2
+          return (
+            <g key={l} onMouseMove={(e) => { const s = e.currentTarget.closest('svg').getBoundingClientRect(); show({ x: e.clientX - s.left, y: e.clientY - s.top, label: l, value: `${r}M reached · ${b} buyers` }) }} onMouseLeave={hide}>
+              <text x={PL - 8} y={y + barH / 2} dy="0.35em" textAnchor="end" fontSize="9" fill={C.text} fontFamily={MONO}>{l}</text>
+              <rect x={PL} y={y} width={xr(r) - PL} height={barH} rx="3" fill={C.mid} />
+              <rect x={mid} y={y} width={xb(b) - mid} height={barH} rx="3" fill={C.s1} />
+              <text x={xb(b) + 6} y={y + barH / 2} dy="0.35em" fontSize="9" fill={C.textStrong} fontFamily={MONO}>{b}</text>
+            </g>
+          )
+        })}
+      </svg>
+      <Tip tip={tip} />
+      <DataTable caption="Reach and buyers per broadcast" head={['Send', 'Reach', 'Buyers ≤30 min']} rows={SENDS.map(([l, r, b]) => [l, `${r}M`, b])} />
+    </div>
+  )
+}
+
+/* ── Quality gate: ตรวจความครบก่อนส่งรายงาน ── */
+export function QualityGate() {
+  const rows = [
+    [true, 'Sales closed at 24:00, every day'],
+    [true, 'GA4 full-day pull · date verified'],
+    [true, 'Funnel 6/6 steps · 150+ search terms'],
+    [false, 'GA4 ÷ real buyers = 0.31 (want 0.4–1)'],
+  ]
+  return (
+    <div className="mono flex h-[170px] flex-col justify-between text-[10px] leading-relaxed">
+      <div className="rounded-lg border border-line bg-bg px-3 py-2">
+        <span className="text-accent">$</span> <span className="text-fg">check.py</span> <span className="text-muted">--day 12</span>
+        {rows.map(([ok, t]) => (
+          <div key={t} className="flex gap-2"><span style={{ color: ok ? C.s1 : C.neg }}>{ok ? '✓' : '✗'}</span><span className="text-muted">{t}</span></div>
+        ))}
+      </div>
+      <div className="flex items-center gap-3 rounded-lg px-3 py-1.5" style={{ border: `1px solid ${C.neg}`, background: 'color-mix(in srgb, var(--color-div-neg) 8%, transparent)' }}>
+        <span className="whitespace-nowrap text-fg">Report held</span>
+        <span className="text-muted">re-pull → checks pass → sent</span>
+      </div>
+    </div>
+  )
+}
+
+/* ── Job runs: job พังหลัง schema ต้นทางเปลี่ยน → แก้ → ตรวจตรง 100% ── */
+export function JobRuns() {
+  const tasks = ['orders', 'spending', 'prize']
+  const days = 14, fail = 9 // วันที่ 10–11 พัง, วันที่ 12 แก้แล้ว
+  const PL = 58, cw = (W - PL - 8) / days, PT = 46
+  const state = (t, d) => d < fail ? 'ok' : d === fail || d === fail + 1 ? (t === 0 ? 'ok' : t === 1 ? 'fail' : 'skip') : 'ok'
+  const col = { ok: C.s1, fail: C.neg, skip: C.mid }
+  return (
+    <div className="relative">
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Scheduled job runs before and after a fix (illustrative)">
+        {[['Failed task', 'spending'], ['Root cause', 'dropped col'], ['Rewrite check', '100% match']].map(([l, v], i) => (
+          <g key={l} transform={`translate(${8 + i * 104}, 6)`}>
+            <text y="9" fontSize="8" fill={C.text} fontFamily={MONO}>{l.toUpperCase()}</text>
+            <text y="27" fontSize="12" fill={C.textStrong} fontFamily="var(--font-sans)" fontWeight="700">{v}</text>
+          </g>
+        ))}
+        {tasks.map((t, ti) => (
+          <g key={t}>
+            <text x={PL - 8} y={PT + ti * 26 + 9} dy="0.35em" textAnchor="end" fontSize="9" fill={C.text} fontFamily={MONO}>{t}</text>
+            {[...Array(days)].map((_, d) => <rect key={d} x={PL + d * cw + 1.5} y={PT + ti * 26} width={cw - 3} height="18" rx="3" fill={col[state(ti, d)]} opacity={state(ti, d) === 'ok' ? 0.85 : 1} />)}
+          </g>
+        ))}
+        <line x1={PL + (fail + 2) * cw} x2={PL + (fail + 2) * cw} y1={PT - 4} y2={PT + 76} stroke={C.textStrong} strokeDasharray="2 3" />
+        <text x={PL + (fail + 2) * cw - 4} y={PT + 92} textAnchor="end" fontSize="9" fill={C.textStrong} fontFamily={MONO}>fix deployed →</text>
+      </svg>
+      <Legend items={[{ label: 'Succeeded', color: C.s1 }, { label: 'Failed', color: C.neg }, { label: 'Skipped (upstream failed)', color: C.mid }]} />
+    </div>
+  )
+}

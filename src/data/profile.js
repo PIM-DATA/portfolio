@@ -22,13 +22,13 @@ export const profile = {
   heroIntro:
     'Bangkok-based data analyst turning raw customer and transaction data into dashboards, segments, and decisions — with SQL, Databricks, Power BI, and Looker Studio.',
   summary:
-    'Data Analyst with hands-on experience in SQL, Databricks, Power BI, and Looker Studio, focusing on business data preparation, dashboard development, data validation, and ad-hoc analysis. Skilled in customer analytics, RFM segmentation, purchase behavior, and KPI reporting, with a background in social and consumer insight and practical use of AI tools to support analysis and problem solving.',
+    'Data Analyst with hands-on experience in SQL, Databricks, Power BI, and Looker Studio, focusing on business data preparation, dashboard development, data validation, and ad-hoc analysis. Skilled in customer analytics, RFM segmentation, purchase behavior, and KPI reporting, with a background in social and consumer insight. I use AI tools such as Claude to automate recurring reporting end-to-end — so the team gets numbers on time, checked, without asking.',
 }
 
 export const stats = [
   { value: '4+', label: 'Years in data & insight' },
   { value: '10+', label: 'Dashboards shipped' },
-  { value: '27', label: 'Ad-hoc analyses · Feb–May 2026' },
+  { value: ':05', label: 'Hourly reports that send themselves' },
   { value: '40%', label: 'Faster weekly reporting' },
 ]
 
@@ -85,14 +85,14 @@ export const experience = [
     period: 'Jun 2022 — Present',
     roles: [
       {
-        title: 'Junior Data Analyst',
+        title: 'Data Analyst',
         period: 'Feb 2026 — Present',
         bullets: [
-          'Use SQL and Databricks to retrieve, join, validate, and prepare data from multiple tables for customer, transaction, and business analysis.',
-          'Prepare customer analytics datasets covering RFM, AOV, Basket Size, Purchase Frequency, Repeat Purchase, and Customer Segmentation for dashboards and recurring analysis.',
-          'Analyze customer and transaction data across users, orders, purchase rounds, dates, and provinces to identify purchasing patterns and support marketing and business decisions.',
-          'Validate source and reporting data by investigating duplicates, missing values, date inconsistencies, and reporting discrepancies to improve reporting reliability.',
-          'Support Power BI and Looker Studio dashboards and ad-hoc analysis by translating business questions into required metrics, datasets, and reporting outputs.',
+          "Built an automated hourly sales report (Databricks, Python, GA4) that posts to the Marketing team's chat on schedule throughout every sales window — with completeness checks that hold the report if any source is incomplete.",
+          'Measured the sales impact of LINE OA broadcasts by joining broadcast exports, GA4 sessions, and orders — giving Marketing site visits and buyers for each send, not just opens.',
+          'Built customer analytics datasets on Databricks (RFM, AOV, basket size, purchase frequency, repeat purchase, segments) that feed recurring dashboards and 27 ad-hoc requests from Marketing, Revenue, and CRM teams in four months.',
+          'Traced reporting discrepancies to their root cause (duplicates, missing values, time-zone and partial-day errors) and set validation checks that now run before every report.',
+          'Translated business questions into metrics and Power BI / Looker Studio dashboards, and designed a Databricks Genie space so non-technical teams can get answers on their own.',
         ],
       },
       {
@@ -150,6 +150,49 @@ export const certifications = [
 // featured: true = โชว์ในหน้าแรกทันที (ที่เหลือซ่อนอยู่หลังปุ่ม View all projects)
 export const projects = [
   {
+    id: 'hourly',
+    featured: true,
+    chart: 'hourly',
+    category: 'Automation & AI',
+    title: 'Automated Hourly Sales Pulse',
+    description:
+      'During each two-week sales window, an hourly report lands in the Marketing team\'s chat at exactly :05 — sales vs target by hour, stock left, sell-outs, and GA4 traffic — with no one at the keyboard. Built with SQL on Databricks, Python, and Claude as an AI pair-programmer, feeding a live web dashboard on the same data.',
+    tags: ['Databricks', 'Python', 'GA4', 'Lark bot', 'Claude'],
+    highlights: ['Hour-by-hour pacing against target', 'Report posts itself on schedule', 'Same numbers in chat and dashboard'],
+  },
+  {
+    id: 'broadcast',
+    featured: true,
+    chart: 'broadcast',
+    category: 'Marketing Analytics',
+    title: 'LINE Broadcast → Sales Attribution',
+    description:
+      'Joined LINE OA broadcast exports, GA4 sessions, and order data to answer what LINE\'s own stats cannot: did this send actually sell? Each broadcast is matched to the site visits and purchases that followed it — showing that the biggest sends were not the ones that sold, and surfacing sends missing from the team\'s own campaign log.',
+    tags: ['LINE OA', 'GA4', 'SQL', 'Attribution'],
+    highlights: ['Opens → site visits → buyers per send', 'Reach vs. sales by time of day', 'Found unlogged sends in the campaign record'],
+  },
+  {
+    id: 'quality',
+    featured: true,
+    chart: 'quality',
+    category: 'Data Quality',
+    title: 'Report Quality Gate',
+    description:
+      'When our GA4 numbers disagreed with another team\'s, I traced it to partial-day pulls and built a gate that runs before every report: each past day must be fully closed, GA4 date ranges verified, and ratios between sources must make sense — otherwise the report is held, not sent.',
+    tags: ['Python', 'Data validation', 'GA4', 'Process design'],
+    highlights: ['Root-caused a cross-team mismatch', 'Automatic checks before every send', 'Bad data is held, not shipped'],
+  },
+  {
+    id: 'jobfix',
+    chart: 'jobs',
+    category: 'Data Engineering',
+    title: 'Fixing a Broken Pipeline After a Schema Change',
+    description:
+      'A scheduled job that builds prize and spending tables failed overnight. I traced it to two causes upstream: a column dropped from the users table, and a legacy orders table that had silently stopped receiving new orders after a system migration — so the old output had been stale for months. I validated the rewritten query against the complete order table (100% match) before rollout and listed which downstream numbers would change.',
+    tags: ['Databricks Jobs', 'SQL', 'Root cause', 'Validation'],
+    highlights: ['Two root causes, not one', 'Rewrite checked against full orders', 'Downstream impact flagged before release'],
+  },
+  {
     id: 'genie',
     featured: true,
     chart: 'genie',
@@ -162,7 +205,6 @@ export const projects = [
   },
   {
     id: 'scan',
-    featured: true,
     chart: 'funnel',
     category: 'Product Analytics',
     title: '"ฝากตรวจหวย" Feature Analytics',
@@ -174,7 +216,6 @@ export const projects = [
   },
   {
     id: 'map',
-    featured: true,
     chart: 'dotmap',
     category: 'Data Storytelling',
     title: 'Digital Map of First-Prize Winners',
@@ -248,7 +289,6 @@ export const projects = [
   },
   {
     id: 'pipeline',
-    featured: true,
     chart: 'pipeline',
     category: 'Data Engineering',
     title: 'Databricks Tables, ETL & Data Quality',

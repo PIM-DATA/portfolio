@@ -19,7 +19,7 @@ export default function Work() {
       id="work"
       eyebrow="Selected work"
       title="Projects that moved a number."
-      intro="Six projects that best show the range — from self-service analytics and data pipelines to storytelling. Every chart is an illustrative sample of the deliverable's shape; real client numbers stay with the client."
+      intro="Six projects that best show the range — from reporting that runs itself and marketing attribution to self-service analytics. Every chart is an illustrative sample of the deliverable's shape; real client numbers stay with the client."
     >
       <Reveal className="mb-8 flex flex-wrap items-center gap-2">
         <div className="mono inline-flex rounded-full border border-line bg-surface/70 p-1 text-[11px] uppercase tracking-wider">
