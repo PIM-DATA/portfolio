@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { profile, stats } from '../data/profile.js'
 import { fadeUp, stagger } from './Section.jsx'
+import { CountUp } from '../charts/shared.jsx'
 
 export default function Hero() {
   return (
@@ -69,7 +70,7 @@ export default function Hero() {
         <motion.dl variants={fadeUp} className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="bg-surface px-6 py-6">
-              <dd className="stat-num text-4xl text-fg">{s.value}</dd>
+              <dd className="stat-num text-4xl text-fg"><CountUp value={s.value} /></dd>
               <dt className="mono mt-2 text-xs uppercase tracking-[0.1em] text-muted">{s.label}</dt>
             </div>
           ))}

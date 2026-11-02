@@ -113,3 +113,8 @@ body {
 
 /* tokens ใช้ร่วมในแดชบอร์ด */
 :root { --ramp-1: #143c4d; --ramp-2: #10586f; --ramp-3: #0b7a9a; --ramp-4: #0b9ec8; --ramp-5: #4fd1ff; --color-good: #4ade80; --color-bad: #e66767; }
+
+/* ── chart motion: ชั่วโมงที่กำลังขาย กระพริบเบา ๆ ── */
+@keyframes pulse-live { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.pulse-live { animation: pulse-live 1.6s ease-in-out 1.4s infinite; }
+@media (prefers-reduced-motion: reduce) { .pulse-live { animation: none; } }

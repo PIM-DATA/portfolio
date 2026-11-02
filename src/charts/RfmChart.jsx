@@ -1,4 +1,4 @@
-import { C, useTip, Tip, DataTable, fmt } from './shared.jsx'
+import { C, useTip, Tip, DataTable, fmt, useReveal, grow } from './shared.jsx'
 
 // ข้อมูลตัวอย่าง (illustrative) — จำนวนลูกค้าต่อ segment
 const data = [
@@ -18,8 +18,9 @@ const top = data.reduce((a, b) => (a.n > b.n ? a : b))
 
 export default function RfmChart() {
   const { tip, show, hide } = useTip()
+  const [ref, on] = useReveal()
   return (
-    <div className="relative">
+    <div className="relative" ref={ref}>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Customers per RFM segment (sample data)">
         {[0.25, 0.5, 0.75, 1].map((t) => (
           <line key={t} x1={x(max * t)} x2={x(max * t)} y1={PT} y2={H - PB} stroke={C.grid} strokeWidth="1" />
@@ -31,7 +32,7 @@ export default function RfmChart() {
               <text x={PL - 10} y={y + barH / 2} dy="0.35em" textAnchor="end" fontSize="10" fill={C.text} fontFamily="var(--font-mono)">
                 {d.seg}
               </text>
-              <rect x={PL} y={y} width={x(d.n) - PL} height={barH} rx="4" fill={C.s1} />
+              <rect x={PL} y={y} width={x(d.n) - PL} height={barH} rx="4" fill={C.s1} style={grow(on, 'x', i * 0.12)} />
               <rect x={PL} y={y} width="4" height={barH} fill={C.s1} />
               {d === top && (
                 <text x={x(d.n) + 8} y={y + barH / 2} dy="0.35em" fontSize="10" fill={C.textStrong} fontFamily="var(--font-mono)">
