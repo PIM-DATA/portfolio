@@ -88,9 +88,9 @@ export const experience = [
         period: 'Feb 2026 — Present',
         bullets: [
           'Build and maintain the data layer on Databricks (SQL, PySpark): tables, scheduled jobs and dashboards in Power BI, Looker Studio and web.',
-          'Automated hourly sales reporting with built-in completeness checks, so Marketing gets reliable numbers throughout each sales window.',
+          'Automate hourly sales reporting (16 reports a day) with built-in completeness checks, so Marketing gets reliable numbers throughout each sales window.',
           'Reconcile GA4, BigQuery and sales data to find root causes of reporting gaps and tracking errors, and work with Dev and SEO to fix them at the source.',
-          'Create customer analytics (RFM, segmentation, churn risk) that power dashboards, ad audiences, LINE broadcast lists and ad-hoc questions from Marketing, Revenue and CRM.',
+          'Create customer analytics (RFM, segmentation) across 8M+ users that power dashboards, ad audiences, LINE broadcast lists and ad-hoc questions from Marketing, Revenue and CRM.',
           'Prepare recurring, privacy-safe data packages for external partners, with documentation and row-level validation.',
         ],
       },
