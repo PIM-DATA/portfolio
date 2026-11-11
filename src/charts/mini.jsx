@@ -14,12 +14,13 @@ export function GenieMock() {
       <div style={fade(on, 0)} className="self-end rounded-lg rounded-br-sm bg-surface-2 px-3 py-1.5 text-fg">ลูกค้าที่ซื้อครบทุกงวดตั้งแต่ต้นปี มีกี่คน?</div>
       <div style={fade(on, 0.6)} className="rounded-lg rounded-bl-sm border border-line bg-bg px-3 py-2 text-muted">
         <span className="text-accent">SELECT</span> user_id, COUNT(DISTINCT round) <span className="text-accent">AS</span> rounds<br />
-        <span className="text-accent">FROM</span> silver.lottery_orders <span className="text-accent">WHERE</span> ts + INTERVAL 7 HOURS ≥ '2026-01-01'<br />
-        <span className="text-accent">GROUP BY</span> 1 <span className="text-accent">HAVING</span> rounds = 17
+        <span className="text-accent">FROM</span> sales.orders<br />
+        <span className="text-accent">WHERE</span> order_date &gt;= '2026-01-01'<br />
+        <span className="text-accent">GROUP BY</span> 1 <span className="text-accent">HAVING</span> rounds = 12
       </div>
       <div style={fade(on, 1.2)} className="flex items-center gap-3 rounded-lg border border-accent/30 bg-accent/5 px-3 py-1.5">
-        <span className="stat-num text-xl text-fg">3,2xx</span>
-        <span className="text-muted">customers · every round · avg 41 tickets</span>
+        <span className="stat-num text-xl text-fg">1,250</span>
+        <span className="text-muted">customers · every round (illustrative)</span>
       </div>
     </div>
   )

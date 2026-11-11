@@ -28,7 +28,7 @@ export const profile = {
 export const stats = [
   { value: '6+', label: 'Years in data & insight', note: 'Social insight → BI → data analyst, since 2020' },
   { value: '10+', label: 'Dashboards shipped', note: 'Lottery, GA4 e-commerce, ads, social, BU KPIs' },
-  { value: '27', label: 'Ad-hoc analyses answered', note: 'For Marcom, Revenue & CRM, Feb – May 2026' },
+  { value: '8M+', label: 'Users segmented', note: 'RFM segments for Marketing, Revenue & CRM' },
   { value: '40%', label: 'Less weekly report prep', note: 'Power BI + multi-source data prep' },
 ]
 
@@ -208,7 +208,7 @@ export const projects = [
     category: 'Product Analytics',
     title: '"ฝากตรวจหวย" Feature Analytics',
     description:
-      'End-to-end tracking for a ticket-checking feature in the app: raw data prep, analysis tables, scheduled job runs, then a dashboard and insight summary for the Marcom team to measure campaigns and user behaviour.',
+      'End-to-end tracking for a ticket-checking feature in the app: raw data prep, analysis tables, scheduled job runs, then a dashboard and insight summary for the Marketing team to measure campaigns and user behaviour.',
     tags: ['SQL', 'Databricks Jobs', 'Dashboard', 'Web app'],
     highlights: ['Per-round usage & hit rate', 'Acquisition funnel by segment', 'Built and deployed as a web dashboard'],
     link: '',
@@ -232,7 +232,7 @@ export const projects = [
     description:
       'Market-sizing and trend analysis of the online lottery market — comparing digital, platform, and paper channels alongside economic context and consumer behaviour to surface business opportunities, shifts in buying behaviour, and competitive trends.',
     tags: ['Market analysis', 'Public data', 'Consumer insight'],
-    highlights: ['Channel share & forecast', 'Digital vs platform vs paper channels', 'Input to strategy & Marcom'],
+    highlights: ['Channel share & forecast', 'Digital vs platform vs paper channels', 'Input to strategy & Marketing'],
     link: '',
   },
   {
@@ -303,9 +303,9 @@ export const projects = [
     category: 'Customer Analytics',
     title: 'Customer Analytics & RFM Segmentation',
     description:
-      'Prepared customer profile datasets covering RFM, AOV, basket size, purchase frequency, customer segments, and repeat-purchase behaviour — feeding recurring dashboards and 27 ad-hoc requests from Marcom, Revenue, and CRM teams in four months.',
+      'Prepared customer profile datasets covering RFM, AOV, basket size, purchase frequency, customer segments, and repeat-purchase behaviour — feeding recurring dashboards and ad-hoc requests from Marketing, Revenue, and CRM teams.',
     tags: ['SQL', 'Databricks', 'RFM', 'Ad-hoc analysis'],
-    highlights: ['Segment-level AOV & frequency', 'Repeat-purchase tracking', '27 ad-hoc analyses (Feb–May 2026)'],
+    highlights: ['Segment-level AOV & frequency', 'Repeat-purchase tracking', 'Go-to source for ad-hoc questions'],
   },
   {
     id: 'listening',
@@ -353,7 +353,7 @@ export const dashboards = [
     points: [
       { h: 'Business question', t: 'Are broadcasts driving people to block the account? Which rounds spike, and is the block share trending up or down after each campaign change?' },
       { h: 'Data & prep', t: 'LINE OA follower and block events joined to the purchase-round calendar; monthly and per-round aggregates with round-over-round deltas computed in the model.' },
-      { h: 'Outcome', t: 'Block share and its trend became a standing KPI in the Marcom review, used to tune broadcast frequency and content mix.' },
+      { h: 'Outcome', t: 'Block share and its trend became a standing KPI in the Marketing review, used to tune broadcast frequency and content mix.' },
     ],
   },
   {
