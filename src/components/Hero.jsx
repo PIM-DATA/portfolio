@@ -69,9 +69,10 @@ export default function Hero() {
 
         <motion.dl variants={fadeUp} className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="bg-surface px-6 py-6">
-              <dd className="stat-num text-4xl text-fg"><CountUp value={s.value} /></dd>
-              <dt className="mono mt-2 text-xs uppercase tracking-[0.1em] text-muted">{s.label}</dt>
+            <div key={s.label} className="flex flex-col bg-surface px-6 py-7">
+              <dd className="stat-num order-1 text-5xl text-fg md:text-6xl"><CountUp value={s.value} accent /></dd>
+              <dt className="order-2 mt-3 text-sm font-medium text-fg">{s.label}</dt>
+              {s.note && <dd className="order-3 mono mt-1 text-xs text-muted">{s.note}</dd>}
             </div>
           ))}
         </motion.dl>

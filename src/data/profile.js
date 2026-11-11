@@ -22,54 +22,53 @@ export const profile = {
   heroIntro:
     'Bangkok-based data analyst turning raw customer and transaction data into dashboards, segments, and decisions — with SQL, Databricks, Power BI, and Looker Studio.',
   summary:
-    'Data Analyst with hands-on experience in SQL, Databricks, Power BI, and Looker Studio, focusing on business data preparation, dashboard development, data validation, and ad-hoc analysis. Skilled in customer analytics, RFM segmentation, purchase behavior, and KPI reporting, with a background in social and consumer insight. I use AI tools such as Claude to automate recurring reporting end-to-end — so the team gets numbers on time, checked, without asking.',
+    "I'm a data analyst who builds the data behind marketing decisions, working in Databricks (SQL, PySpark, Python), GA4, Power BI and Looker Studio. I prepare and validate customer and sales data, build RFM segments and dashboards that Marketing, Revenue and CRM teams use every day, and trace numbers that don't match back to their root cause. I use AI tools such as Claude to automate recurring reports end-to-end, so the team gets numbers on time, checked, without asking. Background in social listening and consumer insight.",
 }
 
 export const stats = [
-  { value: '4+', label: 'Years in data & insight' },
-  { value: '10+', label: 'Dashboards shipped' },
-  { value: ':05', label: 'Hourly reports that send themselves' },
-  { value: '40%', label: 'Faster weekly reporting' },
+  { value: '6+', label: 'Years in data & insight', note: 'Social insight → BI → data analyst, since 2020' },
+  { value: '10+', label: 'Dashboards shipped', note: 'Lottery, GA4 e-commerce, ads, social, BU KPIs' },
+  { value: '27', label: 'Ad-hoc analyses answered', note: 'For Marcom, Revenue & CRM, Feb – May 2026' },
+  { value: '40%', label: 'Less weekly report prep', note: 'Power BI + multi-source data prep' },
 ]
 
 export const skills = [
   {
-    group: 'Data & Query',
-    items: ['SQL', 'Databricks', 'Data Preparation', 'Data Cleaning', 'Data Quality Checking'],
+    group: 'Data Preparation & Quality',
+    items: ['Data modelling (bronze → silver → gold)', 'Cleaning and validation', 'Cross-source reconciliation', 'Automated pre-report checks'],
+  },
+  {
+    group: 'Automation',
+    items: ['Scheduled jobs and pipelines', 'Automated reporting to chat (Lark)', 'Self-service analytics (Databricks Genie)'],
+  },
+  {
+    group: 'Customer Analytics',
+    items: ['RFM segmentation', 'Purchase behaviour (AOV, basket size, frequency, repeat purchase)', 'Audience building for ads and LINE'],
+  },
+  {
+    group: 'Digital & Marketing Analytics',
+    items: ['GA4 funnel and user behaviour', 'Campaign and broadcast attribution', 'Tracking audits'],
   },
   {
     group: 'BI & Reporting',
-    items: ['Power BI', 'Looker Studio', 'KPI Reporting', 'Microsoft Excel'],
-  },
-  {
-    group: 'Analytics',
-    items: ['Customer Analytics', 'RFM', 'Customer Segmentation', 'Purchase Behavior', 'AOV', 'Basket Size', 'Repeat Purchase'],
-  },
-  {
-    group: 'Digital Analytics',
-    items: ['Google Analytics 4 (GA4)', 'Web Traffic Analysis', 'User Behavior Analysis'],
+    items: ['KPI design', 'Dashboard development (DAX)', 'Round-over-round comparison'],
   },
   {
     group: 'Social Insight',
-    items: ['Social Listening', 'Sentiment Analysis', 'Social Trend Analysis', 'Crisis Monitoring'],
-  },
-  {
-    group: 'AI Tools',
-    items: ['ChatGPT', 'Claude'],
+    items: ['Social listening', 'Sentiment and trend analysis', 'Crisis monitoring'],
   },
 ]
 
 // icon = key ใน src/components/Icons.jsx
 export const tools = [
-  { name: 'SQL', icon: 'sql', note: 'Query · join · validate' },
-  { name: 'Databricks', icon: 'databricks', note: 'Data prep at scale' },
+  { name: 'SQL', icon: 'sql', note: 'Query · validate' },
+  { name: 'Python / PySpark', icon: 'python', note: 'Automation' },
+  { name: 'Databricks', icon: 'databricks', note: 'Jobs · Genie' },
+  { name: 'GA4', icon: 'googleanalytics', note: 'Funnels · behavior' },
   { name: 'Power BI', icon: 'powerbi', note: 'Dashboards · DAX' },
   { name: 'Looker Studio', icon: 'looker', note: 'Reporting' },
   { name: 'Excel', icon: 'microsoftexcel', note: 'Analysis · pivots' },
-  { name: 'GA4', icon: 'googleanalytics', note: 'Web & user behavior' },
-  { name: 'Microsoft Fabric', icon: 'microsoft', note: 'Certified · 2026' },
-  { name: 'ChatGPT', icon: 'openai', note: 'AI-assisted analysis' },
-  { name: 'Claude', icon: 'claude', note: 'AI-assisted analysis' },
+  { name: 'Claude / ChatGPT', icon: 'claude', note: 'AI pair-programming' },
 ]
 
 export const languages = [
@@ -88,11 +87,11 @@ export const experience = [
         title: 'Data Analyst',
         period: 'Feb 2026 — Present',
         bullets: [
-          "Built an automated hourly sales report (Databricks, Python, GA4) that posts to the Marketing team's chat on schedule throughout every sales window — with completeness checks that hold the report if any source is incomplete.",
-          'Measured the sales impact of LINE OA broadcasts by joining broadcast exports, GA4 sessions, and orders — giving Marketing site visits and buyers for each send, not just opens.',
-          'Built customer analytics datasets on Databricks (RFM, AOV, basket size, purchase frequency, repeat purchase, segments) that feed recurring dashboards and 27 ad-hoc requests from Marketing, Revenue, and CRM teams in four months.',
-          'Traced reporting discrepancies to their root cause (duplicates, missing values, time-zone and partial-day errors) and set validation checks that now run before every report.',
-          'Translated business questions into metrics and Power BI / Looker Studio dashboards, and designed a Databricks Genie space so non-technical teams can get answers on their own.',
+          'Build and maintain the data layer on Databricks (SQL, PySpark): tables, scheduled jobs and dashboards in Power BI, Looker Studio and web.',
+          'Automated hourly sales reporting with built-in completeness checks, so Marketing gets reliable numbers throughout each sales window.',
+          'Reconcile GA4, BigQuery and sales data to find root causes of reporting gaps and tracking errors, and work with Dev and SEO to fix them at the source.',
+          'Create customer analytics (RFM, segmentation, churn risk) that power dashboards, ad audiences, LINE broadcast lists and ad-hoc questions from Marketing, Revenue and CRM.',
+          'Prepare recurring, privacy-safe data packages for external partners, with documentation and row-level validation.',
         ],
       },
       {
@@ -201,7 +200,7 @@ export const projects = [
     description:
       'Designed a Databricks Genie space so non-technical teams can ask lottery questions in plain language and get trustworthy answers — defining data sources, join logic, time-zone rules, location-cleaning rules, and business definitions behind every answer.',
     tags: ['Databricks', 'Genie', 'SQL', 'Self-service'],
-    highlights: ['Fewer repeat ad-hoc queries', 'Consistent business definitions', 'Faster access for marketing & ops'],
+    highlights: ['Plain-language questions on lottery data', 'Consistent business definitions', 'Time-zone & location rules built in'],
   },
   {
     id: 'scan',
@@ -222,7 +221,7 @@ export const projects = [
     description:
       'Built an interactive map end-to-end — showing where first-prize winners are, in Thailand and abroad, with prize amounts and ticket counts — so executives can present the brand\'s track record to visitors and partners in a way that is easy to grasp.',
     tags: ['Web map', 'Data prep', 'Storytelling'],
-    highlights: ['Region / country filters', '3D globe view', 'Executive & visitor-ready'],
+    highlights: ['Region / country filters', '3D globe view', 'Prize amounts & ticket counts by location'],
     link: '',
   },
   {
@@ -233,7 +232,7 @@ export const projects = [
     description:
       'Market-sizing and trend analysis of the online lottery market — comparing digital, platform, and paper channels alongside economic context and consumer behaviour to surface business opportunities, shifts in buying behaviour, and competitive trends.',
     tags: ['Market analysis', 'Public data', 'Consumer insight'],
-    highlights: ['Channel share & forecast', 'Consumer behaviour scenes', 'Input to strategy & Marcom'],
+    highlights: ['Channel share & forecast', 'Digital vs platform vs paper channels', 'Input to strategy & Marcom'],
     link: '',
   },
   {
@@ -244,7 +243,7 @@ export const projects = [
     description:
       'Designed dashboards for several business units in the group — a media app, a marketplace, and a hotel check-in product — consolidating each BU\'s key metrics (users, MAU/DAU, stickiness, growth) into one page for planning and monitoring.',
     tags: ['Power BI', 'Looker Studio', 'KPI design'],
-    highlights: ['One page per BU', 'Consistent KPI definitions', 'Faster monthly reviews'],
+    highlights: ['Media app · marketplace · hotel check-in', 'Consistent KPI definitions', 'Users, MAU/DAU, stickiness & growth per BU'],
   },
   {
     id: 'social',
@@ -254,7 +253,7 @@ export const projects = [
     description:
       'Looker Studio dashboards for TikTok and Facebook channels — reach, engagement, follower growth, and content performance — so the content team can see which posts work and adjust strategy quickly.',
     tags: ['Looker Studio', 'TikTok', 'Facebook', 'Content analytics'],
-    highlights: ['Channel KPIs with date range', 'Post-level performance table', 'Engagement trend'],
+    highlights: ['Channel KPIs with date range', 'Post-level performance table', 'TikTok & Facebook reach, follower growth'],
   },
   {
     id: 'ga4',
@@ -285,7 +284,7 @@ export const projects = [
     description:
       'Prepared, validated, and supported data for a marketplace performance dashboard — orders, GMV, actual sales, order status, registrations, visitors, growth — plus a seller-side view of SKUs, collections, and shop approvals.',
     tags: ['Data validation', 'Power BI', 'E-commerce KPIs'],
-    highlights: ['Daily vs cumulative metrics', 'Order-status pipeline', 'Anomaly spotting'],
+    highlights: ['Daily vs cumulative metrics', 'Order-status pipeline', 'Seller view: SKUs, collections, shop approvals'],
   },
   {
     id: 'pipeline',
@@ -295,7 +294,7 @@ export const projects = [
     description:
       'Wrote and maintained the SQL behind analysis tables (customer profile, latest-round, top-purchase, silver ETL), scheduled job runs so data refreshes itself, and standardised messy fields — such as province names — before they reach any dashboard.',
     tags: ['SQL', 'Databricks', 'ETL', 'Data quality'],
-    highlights: ['Reusable notebooks & jobs', 'Cleaning & standardisation rules', 'Fewer reporting errors'],
+    highlights: ['Customer profile, latest-round & silver ETL tables', 'Cleaning & standardisation rules', 'Province names cleaned before any dashboard'],
   },
   {
     id: 'rfm',
@@ -316,7 +315,7 @@ export const projects = [
     description:
       'Three years of tracking brand conversation across channels — sentiment shifts, emerging issues, and trends — delivered as insight and crisis reports for marketing and communication teams and corporate clients.',
     tags: ['Social listening', 'Sentiment analysis', 'Reporting'],
-    highlights: ['Weekly sentiment trend', 'Early issue detection', 'Client-ready insight reports'],
+    highlights: ['Weekly sentiment trend', 'Crisis reports for comms teams & clients', 'Client-ready insight reports'],
   },
 ]
 

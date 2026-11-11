@@ -3,7 +3,7 @@ import { experience } from '../data/profile.js'
 
 export default function Experience() {
   return (
-    <Section id="experience" eyebrow="Experience" title="From social insight to business intelligence." intro="Four years across social insight, BI development, and data analysis.">
+    <Section id="experience" eyebrow="Experience" title="From social insight to business intelligence." intro="Six years across social insight, BI development, and data analysis.">
       <div className="space-y-6 sm:space-y-8">
         {experience.map((co, i) => (
           <Reveal key={co.company} className="card p-5 sm:p-8" delay={i * 0.05}>

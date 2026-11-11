@@ -90,7 +90,7 @@ export const fade = (on, delay = 0, dur = 0.45) => ({
 })
 
 // ตัวเลขนับขึ้น: '4+' '10+' ':05' '40%' → นับเฉพาะส่วนที่เป็นตัวเลข (เติม 0 นำหน้าเฉพาะค่าที่ขึ้นต้นด้วย 0 เช่น :05)
-export function CountUp({ value, dur = 1200 }) {
+export function CountUp({ value, dur = 1200, accent = false }) {
   const [ref, on] = useReveal(0.6)
   const m = String(value).match(/^(\D*)(\d+)(.*)$/)
   const [n, setN] = useState(m && !NO_ANIM ? 0 : null)
@@ -102,6 +102,8 @@ export function CountUp({ value, dur = 1200 }) {
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
   }, [on])
-  if (!m || n === null) return <span ref={ref}>{value}</span>
-  return <span ref={ref}>{m[1]}{String(n).padStart(m[2].startsWith('0') ? m[2].length : 1, '0')}{m[3]}</span>
+  const tail = (t) => (accent && t ? <span className="text-accent">{t}</span> : t)
+  if (!m) return <span ref={ref}>{value}</span>
+  const num = n === null ? m[2] : String(n).padStart(m[2].startsWith('0') ? m[2].length : 1, '0')
+  return <span ref={ref}>{m[1]}{num}{tail(m[3])}</span>
 }
