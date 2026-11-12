@@ -16,6 +16,7 @@ export const profile = {
   linkedin: '',        // ใส่ลิงก์ LinkedIn เช่น 'https://www.linkedin.com/in/xxx'
   github: '',          // ใส่ลิงก์ GitHub ถ้ามี
   cvFile: 'Phimphimai-Buranchai-CV.pdf',
+  heroWords: ['Pim', 'Data'],   // คำตัวใหญ่ซ้าย/ขวาของรูปใน hero
   photo: 'profile.jpg',   // รูปโปรไฟล์ใน public/ (ลบบรรทัดนี้ถ้าไม่อยากโชว์รูป)
   available: true,
   availabilityText: 'Open to Data Analyst / BI roles',

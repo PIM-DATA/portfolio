@@ -10,6 +10,7 @@ const ACCENT = [79, 209, 255] // #4fd1ff
 
 export default function Background() {
   const ref = useRef(null)
+  const orbsRef = useRef(null)
 
   useEffect(() => {
     const canvas = ref.current
@@ -83,7 +84,14 @@ export default function Background() {
       raf = requestAnimationFrame(draw)
     }
 
-    const onMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY }
+    const onMove = (e) => {
+      mouse.x = e.clientX; mouse.y = e.clientY
+      // แสงฟุ้งเลื่อนสวนเมาส์เล็กน้อย
+      if (orbsRef.current) {
+        const ox = (e.clientX / w - 0.5) * -40, oy = (e.clientY / h - 0.5) * -30
+        orbsRef.current.style.transform = `translate3d(${ox}px, ${oy}px, 0)`
+      }
+    }
     const onLeave = () => { mouse.x = -9999; mouse.y = -9999 }
     const onVis = () => { if (document.hidden) cancelAnimationFrame(raf); else raf = requestAnimationFrame(draw) }
 
@@ -105,9 +113,11 @@ export default function Background() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
       {/* แสงฟุ้งเลื่อนช้าๆ */}
-      <div className="orb orb-a" />
-      <div className="orb orb-b" />
-      <div className="orb orb-c" />
+      <div ref={orbsRef} className="absolute inset-0 transition-transform duration-[1200ms] ease-out">
+        <div className="orb orb-a" />
+        <div className="orb orb-b" />
+        <div className="orb orb-c" />
+      </div>
       <canvas ref={ref} className="absolute inset-0" />
     </div>
   )
